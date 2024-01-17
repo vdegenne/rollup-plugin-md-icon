@@ -54,6 +54,6 @@
 		"prettier": "^3.2.4"
 	},
 	"lint-staged": {
-		"**/*.md": "prettier --single-quote --no-bracket-spacing --write"
+		"**/*.md": "prettier --no-use-tabs --single-quote --no-bracket-spacing --write"
 	}
 }

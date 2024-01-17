@@ -14,11 +14,11 @@ Generates fonts with only the symbols you use in your app ✨
 import {mdIcon} from 'rollup-plugin-md-icon';
 
 export default {
-	plugins: [
-		mdIcon({
-			/* options */
-		}),
-	],
+  plugins: [
+    mdIcon({
+      /* options */
+    }),
+  ],
 };
 ```
 
@@ -28,17 +28,15 @@ It's ok to use the full symbols font from fonts.googleapis.com so development ca
 
 ```html
 <head>
-	<link
-		id="symbols"
-		href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
-		rel="stylesheet"
-	/>
+  <link
+    id="symbols"
+    href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+    rel="stylesheet"
+  />
 </head>
 ```
 
 ⚠️ Notice the `id="symbols"` attribute which is **required** so the plugin understands that this link needs to be minified later!
-
-test
 
 _(There is also a local stylesheet you can use when [Working offline](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Working-offline))_
 
@@ -60,11 +58,11 @@ If you prefer serving the stylesheet and font from your host, then this solution
 import {mdIcon} from 'rollup-plugin-md-icon';
 
 export default {
-	plugins: [
-		mdIcon({
-			symbols: {},
-		}),
-	],
+  plugins: [
+    mdIcon({
+      symbols: {},
+    }),
+  ],
 };
 ```
 
@@ -79,7 +77,7 @@ Now you'll need to link the downloaded stylesheet in your html index, for instan
 
 ```html
 <head>
-	<link rel="stylesheet" href="/material-symbols.css" />
+  <link rel="stylesheet" href="/material-symbols.css" />
 </head>
 ```
 
@@ -94,11 +92,11 @@ If you prefer downloading files only at build time then make these changes:
 
 ```html
 <head>
-	<link
-		id="symbols"
-		href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
-		rel="stylesheet"
-	/>
+  <link
+    id="symbols"
+    href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+    rel="stylesheet"
+  />
 </head>
 ```
 
@@ -114,22 +112,22 @@ import {rollupPluginHTML as html} from '@web/rollup-plugin-html';
 const DEV = process.env.NODE_ENV == 'DEV';
 
 export default {
-	input: 'index.html',
-	plugins: [
-		DEV
-			? [mdIcon(), html()]
-			: [
-					mdIcon({symbols: {}}),
-					html({
-						transformHtml: (html) => {
-							return replaceSymbolsLink(
-								html,
-								'<link rel="stylesheet" href="/material-symbols.css">',
-							);
-						},
-					}),
-				],
-	],
+  input: 'index.html',
+  plugins: [
+    DEV
+      ? [mdIcon(), html()]
+      : [
+          mdIcon({symbols: {}}),
+          html({
+            transformHtml: (html) => {
+              return replaceSymbolsLink(
+                html,
+                '<link rel="stylesheet" href="/material-symbols.css">',
+              );
+            },
+          }),
+        ],
+  ],
 };
 ```
 
