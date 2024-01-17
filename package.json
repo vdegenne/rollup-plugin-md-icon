@@ -1,0 +1,46 @@
+{
+	"name": "rollup-plugin-md-icon",
+	"description": "Minify md icons and font in your app.",
+	"version": "0.0.1",
+	"type": "module",
+	"main": "./lib/rollup/index.js",
+	"module": "./lib/rollup/index.js",
+	"types": "./lib/rollup/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./lib/rollup/index.js",
+			"default": "./lib/rollup/index.js",
+			"types": "./lib/rollup/index.d.ts"
+		}
+	},
+	"scripts": {
+		"build": "wireit"
+	},
+	"wireit": {
+		"build": {
+			"dependencies": [
+				"bring-builds",
+				"copy-all-symbols"
+			]
+		},
+		"bring-builds": {
+			"command": "mkdir lib && find ../lib -type f ! \\( -path '../lib/vite/*' -o -path '../lib/test/*' \\) -print0 | xargs -0 cp --parents -t lib/",
+			"dependencies": [
+				"..:build:ts"
+			],
+			"output": [
+				"lib"
+			]
+		},
+		"copy-all-symbols": {
+			"#comment": "this provides access to full symbols font for when dev'ing offline",
+			"command": "cp -r ../node_modules/mwc3-back-helpers/all-symbols .",
+			"output": [
+				"all-symbols"
+			]
+		}
+	},
+	"dependencies": {
+		"mwc3-back-helpers": "^0.3.1"
+	}
+}
