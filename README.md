@@ -38,6 +38,8 @@ It's ok to use the full symbols font from fonts.googleapis.com so development ca
 
 ⚠️ Notice the `id="symbols"` attribute which is **required** so the plugin understands that this link needs to be minified later!
 
+test
+
 _(There is also a local stylesheet you can use when [Working offline](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Working-offline))_
 
 ### 📦 At build time
