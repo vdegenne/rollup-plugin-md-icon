@@ -6,23 +6,12 @@ Generates fonts with only the symbols you use in your app ✨
 
 `npm add -D rollup-plugin-md-icon`
 
-## ⚒️ Usage
+## Usage
 
-`rollup.config.js`:
+# 👷 During development
 
-```js
-import {mdIcon} from 'rollup-plugin-md-icon';
-
-export default {
-  plugins: [mdIcon()],
-};
-```
-
-(By default the plugin only caches icons found in your code and convert icon names to codepoints.)
-
-### 👷 During development
-
-The recommended way is to use the all symbols font from fonts.googleapis.com for easy and smooth development, all you need is to link this general stylesheet in your page:
+Do not use anything _!_
+Just add this stylesheet in the header of your html document:
 
 ```html
 <head>
@@ -34,108 +23,15 @@ The recommended way is to use the all symbols font from fonts.googleapis.com for
 </head>
 ```
 
-⚠️ Notice the `id="symbols"` attribute which is **required** so the plugin understands that this link needs to be minified later!
+This stylesheet serves a font that contains all symbols from fonts.googleapis.com ([learn more](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/During-development))
 
-_(There is also a local stylesheet you can use when [Working offline](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Working-offline))_
+# 📦 At build time
 
-### 📦 At build time
+From here you can opt for 2 strategies:
 
-It all depends if you prefer having the font files locally or if you want to let fonts.googleapis.com serve your users the files.  
-You have to choose one of these 2 strategies:
+1️⃣ Serve minified font file from fonts.googleapis.com : See [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-from-fonts.googleapis.com) on the wiki.
 
-### 1. Let fonts.googleapis.com serve the font
-
-Read [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-from-fonts.googleapis.com) on the wiki.
-
-### 2. Serve the font locally
-
-If you prefer serving the stylesheet and font from your host, then this solution is more suitable. The plugin will help you in automating this process,
-`rollup.config.js`:
-
-```js
-import {mdIcon} from 'rollup-plugin-md-icon';
-
-export default {
-  plugins: [
-    mdIcon({
-      symbols: {},
-    }),
-  ],
-};
-```
-
-Adding `symbols` with an empty object is enough to tell the plugin to download minified files (from googleapis.com servers). It will generate two files:
-
-- `material-symbols.css`
-- `material-symbols.woff2`
-
-Both under `public` by default
-You can change the destination of each of these files using `stylesheetPath` and `fontPath` options individually.
-Now you'll need to link the downloaded stylesheet in your html index, for instance
-
-```html
-<head>
-  <link rel="stylesheet" href="/material-symbols.css" />
-</head>
-```
-
-####
-
-<details>
-  <summary>How to avoid using the plugin during development</summary>
-
-Files are cached under `.mdicon` to reduce requests between local ↔️ fonts.googleapis.com, but still your computer will send a request every time the cache changes (add or remove icons). In watch mode it can happen a lot.  
-If you prefer downloading files only at build time then make these changes:
-`index.html`:
-
-```html
-<head>
-  <link
-    id="symbols"
-    href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
-    rel="stylesheet"
-  />
-</head>
-```
-
-_(⚠️ Notice the `id="symbols"` which is **required** so the plugin understands that this link needs to be minified later!)_
-
-`rollup.config.js`:
-
-```js
-import {
-  mdIcon,
-  mdIconDownload,
-  replaceSymbolsLink,
-} from 'rollup-plugin-md-icon';
-import {rollupPluginHTML as html} from '@web/rollup-plugin-html';
-
-const DEV = process.env.NODE_ENV == 'DEV';
-
-export default {
-  plugins: [
-    mdIcon(),
-    DEV
-      ? []
-      : [
-          mdIconDownload(),
-          html({
-            transformHtml: (html) => {
-              if (DEV) return html;
-              return replaceSymbolsLink(
-                html,
-                '<link rel="stylesheet" href="/material-symbols.css">',
-              );
-            },
-          }),
-        ],
-  ],
-};
-```
-
-</details>
-
----
+2️⃣ Serve font file locally: See [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-fonts-locally)
 
 ## Development
 
