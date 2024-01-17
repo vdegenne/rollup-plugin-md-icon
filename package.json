@@ -53,6 +53,6 @@
 		"lint-staged": "^15.2.0"
 	},
 	"lint-staged": {
-		"**/*.{md}": "prettier --single-quote --no-bracket-spacing --write"
+		"README.md": "prettier --single-quote --no-bracket-spacing --write"
 	}
 }
