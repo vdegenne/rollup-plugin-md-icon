@@ -31,7 +31,7 @@ From here you can opt for 2 strategies:
 
 1️⃣ Serve minified font file from fonts.googleapis.com : See [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-from-fonts.googleapis.com) on the wiki.
 
-2️⃣ Serve font file locally: See [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-fonts-locally)
+2️⃣ Serve font file locally: See [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-fonts-locally) on the wiki.
 
 ## Development
 
