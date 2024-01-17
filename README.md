@@ -14,17 +14,15 @@ Generates fonts with only the symbols you use in your app ✨
 import {mdIcon} from 'rollup-plugin-md-icon';
 
 export default {
-  plugins: [
-    mdIcon({
-      /* options */
-    }),
-  ],
+  plugins: [mdIcon()],
 };
 ```
 
+(By default the plugin only caches icons found in your code and convert icon names to codepoints.)
+
 ### 👷 During development
 
-It's ok to use the full symbols font from fonts.googleapis.com so development can be smooth, all you need is to link the stylesheet in your page:
+The recommended way is to use the all symbols font from fonts.googleapis.com for easy and smooth development, all you need is to link this general stylesheet in your page:
 
 ```html
 <head>
@@ -45,11 +43,11 @@ _(There is also a local stylesheet you can use when [Working offline](https://gi
 It all depends if you prefer having the font files locally or if you want to let fonts.googleapis.com serve your users the files.  
 You have to choose one of these 2 strategies:
 
-### 1. Let fonts.googleapis.com serve the files
+### 1. Let fonts.googleapis.com serve the font
 
 Read [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-from-fonts.googleapis.com) on the wiki.
 
-### 2. Serve the stylesheet/font locally
+### 2. Serve the font locally
 
 If you prefer serving the stylesheet and font from your host, then this solution is more suitable. The plugin will help you in automating this process,
 `rollup.config.js`:
@@ -105,21 +103,25 @@ _(⚠️ Notice the `id="symbols"` which is **required** so the plugin understan
 `rollup.config.js`:
 
 ```js
-import {mdIcon, transformSymbolsLink} from 'rollup-plugin-md-icon';
-// This serves as an example (you can use what you like)
+import {
+  mdIcon,
+  mdIconDownload,
+  replaceSymbolsLink,
+} from 'rollup-plugin-md-icon';
 import {rollupPluginHTML as html} from '@web/rollup-plugin-html';
 
 const DEV = process.env.NODE_ENV == 'DEV';
 
 export default {
-  input: 'index.html',
   plugins: [
+    mdIcon(),
     DEV
-      ? [mdIcon(), html()]
+      ? []
       : [
-          mdIcon({symbols: {}}),
+          mdIconDownload(),
           html({
             transformHtml: (html) => {
+              if (DEV) return html;
               return replaceSymbolsLink(
                 html,
                 '<link rel="stylesheet" href="/material-symbols.css">',
