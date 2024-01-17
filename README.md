@@ -10,7 +10,7 @@ npm add -D rollup-plugin-md-icon
 
 ## Usage
 
-# 👷 During development
+### 👷 During development
 
 Do not use anything _!_
 Just add this stylesheet in the header of your html document:
@@ -27,7 +27,7 @@ Just add this stylesheet in the header of your html document:
 
 This stylesheet serves a font that contains all symbols from fonts.googleapis.com ([learn more](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/During-development))
 
-# 📦 At build time
+### 📦 At build time
 
 From here you can opt for 2 strategies:
 
@@ -41,7 +41,7 @@ The monorepo of this plugin can be found [here](https://github.com/vdegenne/roll
 
 ## How it works
 
-The plugin scans the source code on build start (also works in watch mode) to build a list of all used icons called a codepoints list. This list is used in URLs to instruct the Google Font server to serve a final font file that only contain these icons. The icon names are converted to codepoints in the final bundle.
+The plugin scans the source code to build a list of all used icons called a codepoints list which is saved under the cache directory `.mdicon`. The cache system is used to avoid downloading the fonts every time rollup runs (which can happen a lot during development). The cached codepoints list is used to generate minimal final font files or urls depending on which strategy you use at build time.
 
 ## Known limitations
 
