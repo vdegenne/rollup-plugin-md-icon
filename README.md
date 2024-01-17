@@ -137,6 +137,10 @@ export default {
 
 ---
 
+## Development
+
+The monorepo of this plugin can be found [here](https://github.com/vdegenne/rollup-plugin-md-icon-monorepo)
+
 ## How it works
 
 The plugin scans the source code on build start (also works in watch mode) to build a list of all used icons called a codepoints list. This list is used in URLs to instruct the Google Font server to serve a final font file that only contain these icons. The icon names are converted to codepoints in the final bundle.
