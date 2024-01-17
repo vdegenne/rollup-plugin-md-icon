@@ -16,20 +16,15 @@ import {mdIcon} from 'rollup-plugin-md-icon';
 export default {
 	plugins: [
 		mdIcon({
-			variant: 'outlined', // default
-			// other options...
+			/* options */
 		}),
 	],
 };
 ```
 
-By default, the plugin does nothing than just converting icon names to codepoints.  
-We will need to link a stylesheet loading the font that can display the symbols.  
-From here we have 2 options:
+### 👷 During development
 
-### 1️⃣ Request the stylesheet from fonts.googleapis.com
-
-During development we can use the full symbols font
+It's ok to use the full symbols font from fonts.googleapis.com so development can be smooth, all you need is to link the stylesheet in your page:
 
 ```html
 <head>
@@ -41,53 +36,20 @@ During development we can use the full symbols font
 </head>
 ```
 
-_(⚠️ Notice the `id="symbols"` which is **required** so the plugin understands that this link needs to be minified!)_
+⚠️ Notice the `id="symbols"` attribute which is **required** so the plugin understands that this link needs to be minified later!
 
-<details>
-  <summary>Working offline</summary>
+_(There is also a local stylesheet you can use when [Working offline](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Working-offline))_
 
-If requesting a resource over the network is not possible, `rollup-plugin-md-icon` provides an offline stylesheet you can use instead:
+### 📦 At build time
 
-- Create a symbolic link inside your static directory:
+It all depends if you prefer having the font files locally or if you want to let fonts.googleapis.com serve your users the files.  
+You have to choose one of these 2 strategies:
 
-```
-cd www
-ln -s ../node_modules/rollup-plugin-md-icon/all-symbols .
-```
+### 1. Let fonts.googleapis.com serve the files
 
-- Update your `index.html`:
+Read [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-from-fonts.googleapis.com) on the wiki.
 
-```html
-<head>
-	<link
-		id="symbols"
-		href="./all-symbols/material-symbols.css"
-		rel="stylesheet"
-	/>
-</head>
-```
-
-</details>
-
----
-
-Of course for final bundle we'll need to transform this link to incorporate only the icons we need. It quite depends on the tools we use but here's an example using [ `@web/rollup-plugin-html` ](https://modern-web.dev/docs/building/rollup-plugin-html/),
-
-```js
-import {mdIcon, transformSymbolsLink} from 'rollup-plugin-md-icon';
-import {rollupPluginHTML as html} from '@web/rollup-plugin-html';
-
-export default {
-	plugins: [
-		mdIcon(),
-		html({
-			transformHtml: transformSymbolsLink,
-		}),
-	],
-};
-```
-
-### 2️⃣S erve the stylesheet/font locally
+### 2. Serve the stylesheet/font locally
 
 If you prefer serving the stylesheet and font from your host, then this solution is more suitable. The plugin will help you in automating this process,
 `rollup.config.js`:
