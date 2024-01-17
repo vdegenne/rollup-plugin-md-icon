@@ -1,7 +1,7 @@
 {
 	"name": "rollup-plugin-md-icon",
 	"description": "Minify md icons and font in your app.",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"type": "module",
 	"main": "./lib/rollup/index.js",
 	"module": "./lib/rollup/index.js",

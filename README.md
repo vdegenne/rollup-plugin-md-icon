@@ -1,5 +1,7 @@
 # rollup-plugin-md-icon
 
+[![Published on npm](https://img.shields.io/npm/v/rollup-plugin-md-icon.svg?logo=npm)](https://www.npmjs.com/package/rollup-plugin-md-icon)
+
 Generates fonts with only the symbols you use in your app ✨
 
 ## Install
