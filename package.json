@@ -14,7 +14,8 @@
 		}
 	},
 	"scripts": {
-		"build": "wireit"
+		"build": "wireit",
+		"prepare": "husky install"
 	},
 	"wireit": {
 		"build": {
@@ -46,5 +47,12 @@
 	"files": [
 		"/lib",
 		"/all-symbols"
-	]
+	],
+	"devDependencies": {
+		"husky": "^8.0.3",
+		"lint-staged": "^15.2.0"
+	},
+	"lint-staged": {
+		"**/*.{md}": "prettier --single-quote --no-bracket-spacing --write"
+	}
 }
