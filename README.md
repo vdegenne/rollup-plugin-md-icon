@@ -10,7 +10,7 @@ npm add -D rollup-plugin-md-icon
 
 ## Usage
 
-### 👷 During development
+## 👷 During development
 
 Do not use anything _!_
 Just add this stylesheet in the header of your html document:
@@ -27,7 +27,7 @@ Just add this stylesheet in the header of your html document:
 
 This stylesheet serves a font that contains all symbols from fonts.googleapis.com ([learn more](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/During-development))
 
-### 📦 At build time
+## 📦 At build time
 
 From here you can opt for 2 strategies:
 
