@@ -4,7 +4,9 @@ Generates fonts with only the symbols you use in your app ✨
 
 ## Install
 
-`npm add -D rollup-plugin-md-icon`
+```
+npm add -D rollup-plugin-md-icon
+```
 
 ## Usage
 
