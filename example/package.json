@@ -1,0 +1,52 @@
+{
+	"type": "module",
+	"scripts": {
+		"dev": "wireit",
+		"build": "wireit",
+		"serve": "wireit"
+	},
+	"wireit": {
+		"dev": {
+			"command": "rollup -cw",
+			"files": [
+				"rollup.config.mjs"
+			],
+			"output": [
+				"dist"
+			],
+			"dependencies": [
+				"http-server"
+			]
+		},
+		"http-server": {
+			"command": "http-server dist -c-1",
+			"service": true
+		},
+		"build": {
+			"command": "rollup -c",
+			"files": [
+				"rollup.config.mjs"
+			],
+			"output": [
+				"dist"
+			]
+		},
+		"serve": {
+			"command": "http-server dist",
+			"dependencies": [
+				"build"
+			]
+		}
+	},
+	"devDependencies": {
+		"@material/web": "^1.1.1",
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@web/dev-server": "^0.4.1",
+		"@web/rollup-plugin-html": "^2.1.2",
+		"http-server": "^14.1.1",
+		"lit": "^3.1.1",
+		"rollup-plugin-css-modules": "^0.1.2",
+		"rollup-plugin-md-icon": "^0.0.6",
+		"wireit": "^0.14.3"
+	}
+}
