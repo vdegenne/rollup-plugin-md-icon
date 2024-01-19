@@ -34,10 +34,12 @@ This stylesheet serves a font that contains all symbols from fonts.googleapis.co
 We'll need to convert the link above.  
 From here you can opt one of 2 strategies:
 
-1️⃣ Serve minified font file from fonts.googleapis.com : See [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-from-fonts.googleapis.com) on the wiki.
-It's the easiest option. The plugin will update the `href` in the final html to request a stylesheet that will load a font file that contains only the icons your app needs (That will count for 2 http requests).
+1️⃣ **Serve minified font file from fonts.googleapis.com** :  See [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-from-fonts.googleapis.com) on the wiki.
 
-2️⃣ Serve font file locally: See [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-fonts-locally) on the wiki.
+It's the easiest option. The plugin will update the `href` in the final html to request a stylesheet that will load a font file that contains only the icons your app needs (That will count for 2 http requests).  
+  
+
+2️⃣ **Serve font file locally** : See [instructions](https://github.com/vdegenne/rollup-plugin-md-icon/wiki/Serving-fonts-locally) on the wiki.
 
 Less intuitive to implement but recommended. The plugin will download the stylesheet and the minified font so you have more control on how you serve them (e.g. bundling the stylesheet directly in a module, caching the font in a service worker, etc..)
 
